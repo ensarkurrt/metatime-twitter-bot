@@ -1,0 +1,25 @@
+{
+  "name": "metatimebot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node ./index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.0.3"
+  },
+  "dependencies": {
+    "clipboardy": "^3.0.0",
+    "dotenv": "^16.0.3",
+    "node-oauth-1.0a-ts": "^4.0.5",
+    "nodemon": "^2.0.22",
+    "oauth-1.0a": "^2.2.6",
+    "ts-node": "^10.9.1",
+    "twitter-api-v2": "^1.14.2"
+  }
+}

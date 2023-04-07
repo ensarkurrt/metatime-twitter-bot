@@ -1,4 +1,3 @@
-import clipboard from 'clipboardy';
 import { TwitterApi } from 'twitter-api-v2';
 require('dotenv').config();
 
@@ -8,8 +7,8 @@ const text =
 
 /* Görev etiketleri, 3 farklı görev için 3 farklı string kullanılmıştır. Görev sayısını arttırmak için array eklemek yeterli. */
 const tags = [
-  '#MetaAirdrop ve #Airdrop',
-  '#MetaAirdrop ve #Airdrop',
+  '#MetaCoin ve #Crypto',
+  '#Metatime ve #Crypto',
   '#MetaAirdrop ve #Airdrop',
 ];
 
@@ -26,7 +25,7 @@ const twitterClient = new TwitterApi(clientOptions);
 async function start() {
   for (let a = 0; a < tags.length; a++) {
     for (let b = 0; b < 3; b++) {
-      const tweetId = await create_tweet(tags[b]);
+      const tweetId = await create_tweet(tags[a]);
       /*  Clipboard'a yapıştırma */
       pbcopy(generated_url(tweetId));
       /*  7 saniye bekleme */
@@ -38,7 +37,7 @@ async function start() {
 
 async function create_tweet(tags) {
   const createResp = await twitterClient.v2.tweet(text + ' ' + tags);
-  console.log('Tweet Olusturuldu');
+  console.log(`${tags} Tweet Olusturuldu`);
   return createResp.data.id;
 }
 
@@ -54,7 +53,9 @@ function generated_url(tweetId) {
 
 /* Clipboard'a yapıştırma fonksiyonu */
 async function pbcopy(data) {
-  await clipboard.write(data);
+  var proc = require('child_process').spawn('pbcopy');
+  proc.stdin.write(data);
+  proc.stdin.end();
 }
 
 start();
